@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/message/message",
+    "pages/shop/shop",
+    "pages/medicine/medicine"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -14,14 +17,26 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "static/icons/view.png",
-        "selectedIconPath": "static/icons/view.png"
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home_selected.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "我的消息",
+        "iconPath": "static/icons/message.png",
+        "selectedIconPath": "static/icons/message_selected.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "商城",
+        "iconPath": "static/icons/shop.png",
+        "selectedIconPath": "static/icons/shop_selected.png"
       },
       {
         "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "static/icons/view.png",
-        "selectedIconPath": "static/icons/view.png"
+        "text": "个人中心",
+        "iconPath": "static/icons/person.png",
+        "selectedIconPath": "static/icons/person_selected.png"
       }
     ]
   },

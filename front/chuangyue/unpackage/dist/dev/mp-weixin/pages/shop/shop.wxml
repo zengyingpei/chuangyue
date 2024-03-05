@@ -1,0 +1,1 @@
+<view class="body"><view class="box"><view class="left"><view class="left_box"><view class="icon"><image src="/static/logo.png" mode=""></image></view><view class="text">购药</view></view></view><view class="right"><view class="right_box"><view class="icon"><image src="/static/logo.png" mode=""></image></view><view class="text">养生</view></view></view></view></view>
