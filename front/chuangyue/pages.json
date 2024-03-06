@@ -34,7 +34,23 @@
 			"path" : "pages/medicine/medicine",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "药品商城",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/keep_medicine/keep_medicine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "养生商城",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/about/about",
+			"style" : 
+			{
+				"navigationBarTitleText" : "关于",
 				"enablePullDownRefresh" : false
 			}
 		}

@@ -3,17 +3,17 @@
 		<view class="box">
 			
 			<view class="left">
-				<view class="left_box">
+				<view class="left_box" @click="goToBuyMedicine">
 					<view class="icon">
-						<image src="../../static/logo.png" mode=""></image>
+						<image src="../../static/icons/buy_medicine.svg" mode=""></image>
 					</view>
 					<view class="text">购药</view>
 				</view>
 			</view>
 			<view class="right">
-				<view class="right_box">
+				<view class="right_box" @click="goToHeathy">
 					<view class="icon">
-						<image src="../../static/logo.png" mode=""></image>
+						<image src="../../static/icons/ys.svg" mode=""></image>
 					</view>
 					<view class="text">养生</view>
 				</view>
@@ -30,6 +30,16 @@
 			}
 		},
 		methods: {
+			goToBuyMedicine(){
+				uni.navigateTo({
+					url: '../medicine/medicine'
+				})
+			},
+			goToHeathy(){
+				uni.navigateTo({
+					url:'../keep_medicine/keep_medicine'
+				})
+			}
 			
 		}
 	}

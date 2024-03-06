@@ -7,6 +7,7 @@ if (!Math) {
   "./pages/message/message.js";
   "./pages/shop/shop.js";
   "./pages/medicine/medicine.js";
+  "./pages/keep_medicine/keep_medicine.js";
 }
 const _sfc_main = {
   onLaunch: function() {

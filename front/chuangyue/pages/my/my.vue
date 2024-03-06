@@ -63,7 +63,7 @@
 				我的工具
 			</view>
 			<view class="section_body">
-				<view class="section_body_item" v-for="item in section3" :key="item.id">
+				<view class="section_body_item" v-for="item in section3" :key="item.id" @click="goToAbout(item.id)">
 					<view class="section_body_item_img"><image class="images" :src="item.img"></image></view>
 					<view class="section_body_item_title">{{item.title}}</view>
 				</view>
@@ -80,34 +80,41 @@
 			return {
 				section1:[
 					{id:1, img:'../../static/icons/bag.svg', title:'待付款'},
-					{id:2, img:'../../static/icons/clock.svg', title:'待发货'},
-					{id:3, img:'../../static/icons/rocket.svg', title:'待收货'},
-					{id:4, img:'../../static/icons/like.svg', title:'待评价'},
-					{id:5, img:'../../static/icons/shouhou.svg', title:'退款/售后'}
+					{id:2, img:'../../static/icons/clock2.svg', title:'待发货'},
+					{id:3, img:'../../static/icons/car.svg', title:'待收货'},
+					{id:4, img:'../../static/icons/pingjia.svg', title:'待评价'},
+					{id:5, img:'../../static/icons/tuikuang.svg', title:'退款/售后'}
 					
 				],
 				section2:[
-					{id:1, img:'../../static/icons/geolocalizator.svg', title:'收货地址'},
+					{id:1, img:'../../static/icons/Geotag.svg', title:'收货地址'},
 					{id:2, img:'../../static/icons/capsules.svg', title:'我的处方'},
 					{id:3, img:'../../static/icons/yuyue.svg', title:'我的预约'},
-					{id:4, img:'../../static/icons/shouhou.svg', title:'我的评价'},
-					{id:5, img:'../../static/icons/hh.svg', title:'就诊人管理'},
-					{id:6, img:'../../static/icons/bingli.svg', title:'我的病例'},
+					{id:4, img:'../../static/icons/messge.svg', title:'我的评价'},
+					{id:5, img:'../../static/icons/hospital.svg', title:'就诊人管理'},
+					{id:6, img:'../../static/icons/bl.svg', title:'我的病例'},
 					{id:7, img:'../../static/icons/bell.svg', title:'就诊提醒'},
 					{id:8, img:'../../static/icons/record.svg', title:'就诊记录'}
 				],
 				section3:[
-					{id:1, img:'../../static/icons/like.svg', title:'我的收藏'},
-					{id:2, img:'../../static/icons/huiyuan.svg', title:'我的会员'},
-					{id:3, img:'../../static/icons/quan.svg', title:'优惠券'},
-					{id:4, img:'../../static/icons/question.svg', title:'常见问题'},
-					{id:5, img:'../../static/icons/kefu.svg', title:'在线客服'},
-					{id:6, img:'../../static/icons/bg-question.svg', title:'关于'}
+					{id:1, img:'../../static/icons/sc.svg', title:'我的收藏'},
+					{id:2, img:'../../static/icons/VIP.svg', title:'我的会员'},
+					{id:3, img:'../../static/icons/youhuiyuan.svg', title:'优惠券'},
+					{id:4, img:'../../static/icons/qingdan.svg', title:'常见问题'},
+					{id:5, img:'../../static/icons/person.svg', title:'在线客服'},
+					{id:6, img:'../../static/icons/about.svg', title:'关于'}
 				]
 			}
 		},
 		methods: {
-			
+			goToAbout(item_id){
+				if(item_id == 6){
+					uni.navigateTo({
+						url:'/pages/about/about'
+					})
+				}
+				
+			}
 		}
 	}
 </script>
@@ -163,7 +170,8 @@
 					.content_text{
 						padding-top: 10rpx;
 						padding-left: 20rpx;
-						font-size: 35rpx;
+						font-size: 37rpx;
+						font-family: 楷体;
 						font-weight: bold;
 					}
 					.open{
@@ -212,6 +220,7 @@
 					padding-left: 20rpx;
 					padding-top: 5rpx;
 					font-size: 44rpx;
+					font-family: 黑体;			////////////////////////////////////////////
 				}
 				.all{
 					font-size: 28rpx;
@@ -249,7 +258,7 @@
 						width: 100%;
 						height: 34rpx;
 						line-height: 34rpx;
-						color: #06121e;
+						color: #595959;
 						font-size: 30rpx;
 						font-weight: bold;
 						margin-top: 20rpx
@@ -268,8 +277,7 @@
 				padding-left: 20rpx;
 				padding-top: 5rpx;
 				font-size: 44rpx;
-				
-				
+				font-family: 黑体;
 			}
 			.section_body{
 				display: flex;
@@ -302,7 +310,7 @@
 						width: 100%;
 						height: 34rpx;
 						line-height: 34rpx;
-						color: #06121e;
+						color: #595959;
 						font-size: 30rpx;
 						font-weight: bold;
 						margin-top: 20rpx

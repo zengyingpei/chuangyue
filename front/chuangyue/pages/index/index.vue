@@ -34,7 +34,7 @@
 					<view class="quick_small">在线问诊</view>
 				</view>
 				<view class="quick_section_item_right">
-					<image class="quick_images" src="../../static/logo.png" mode=""></image>
+					<image class="quick_images" src="../../static/icons/query.svg" mode=""></image>
 				</view>
 			</view>
 			
@@ -46,7 +46,7 @@
 					<view class="quick_small">线下就诊</view>
 				</view>
 				<view class="quick_section_item_right">
-					<image class="quick_images" src="../../static/logo.png" mode=""></image>
+					<image class="quick_images" src="../../static/icons/gh.svg" mode=""></image>
 				</view>
 			</view>
 			
@@ -58,7 +58,7 @@
 					<view class="quick_small">按方开药</view>
 				</view>
 				<view class="quick_section_item_right">
-					<image class="quick_images" src="../../static/logo.png" mode=""></image>
+					<image class="quick_images" src="../../static/icons/cp.svg" mode=""></image>
 				</view>
 			</view>
 			
@@ -70,10 +70,9 @@
 					<view class="quick_small">按方开药</view>
 				</view>
 				<view class="quick_section_item_right">
-					<image class="quick_images" src="../../static/logo.png" mode=""></image>
+					<image class="quick_images" src="../../static/icons/medicine.svg" mode=""></image>
 				</view>
 			</view>
-			
 		</view>
 	</view>
 	
@@ -121,7 +120,6 @@
 					</view>
 				</view>
 			</swiper-item>
-	
 		</swiper>
 	</view>
 	
@@ -229,7 +227,7 @@
 		overflow: hidden;
 		.left{
 			flex-basis: 28%;
-			background-color: #1ba035;
+			background-color: #7ca0ec;
 			.text1{
 				color: #eee;
 				font-weight: bold;
@@ -248,7 +246,7 @@
 				width: 70%;
 				border-radius: 20rpx;
 				text-align: center;
-				color: #1ba035;
+				color: #7ca0ec;
 				margin-top: 20rpx;
 				margin-left: 10rpx;
 			}
@@ -256,6 +254,11 @@
 		.right{
 			flex-basis: 72%;
 			.my_scroll{
+				::-webkit-scrollbar {
+				    display: none;
+				    width: 0;
+				    height: 0;
+				  }
 				white-space: nowrap;
 				width: 496rpx;
 				height: 200rpx;
