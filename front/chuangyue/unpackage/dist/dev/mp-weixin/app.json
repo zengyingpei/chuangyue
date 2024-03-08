@@ -5,7 +5,10 @@
     "pages/message/message",
     "pages/shop/shop",
     "pages/medicine/medicine",
-    "pages/keep_medicine/keep_medicine"
+    "pages/keep_medicine/keep_medicine",
+    "pages/about/about",
+    "pages/login/login",
+    "pages/text/text"
   ],
   "window": {
     "navigationBarTextStyle": "black",

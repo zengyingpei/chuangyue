@@ -3,7 +3,7 @@
 		
 		<view class="user_info">
 			<view class="info_up">
-				<view class="info_image">
+				<view class="info_image" @click="goToLogin">
 					<image class="images" src="../../static/logo.png" mode=""></image>
 				</view>
 				
@@ -114,6 +114,11 @@
 					})
 				}
 				
+			},
+			goToLogin(){
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
 			}
 		}
 	}

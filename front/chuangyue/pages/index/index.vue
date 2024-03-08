@@ -58,7 +58,7 @@
 					<view class="quick_small">按方开药</view>
 				</view>
 				<view class="quick_section_item_right">
-					<image class="quick_images" src="../../static/icons/cp.svg" mode=""></image>
+					<image class="quick_images" src="../../static/icons/jk.svg" mode=""></image>
 				</view>
 			</view>
 			

@@ -1,0 +1,1 @@
+<view><view class=""><button type="primary" bindtap="{{a}}">get info</button><button style="color:#999;font-size:36rpx;border:none" class="login" open-type="getPhoneNumber" bindgetphonenumber="{{b}}" withCredentials="true">点击登录</button><input type="nickname" placeholder="请输入昵称"/></view></view>

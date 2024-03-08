@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const common_js_utils = require("./common/js/utils.js");
 if (!Math) {
   "./pages/index/index.js";
   "./pages/my/my.js";
@@ -8,6 +9,9 @@ if (!Math) {
   "./pages/shop/shop.js";
   "./pages/medicine/medicine.js";
   "./pages/keep_medicine/keep_medicine.js";
+  "./pages/about/about.js";
+  "./pages/login/login.js";
+  "./pages/text/text.js";
 }
 const _sfc_main = {
   onLaunch: function() {
@@ -18,6 +22,9 @@ const _sfc_main = {
   },
   onHide: function() {
     console.log("App Hide");
+  },
+  globalData: {
+    utils: common_js_utils.Utils
   }
 };
 const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/chuangyue/front/chuangyue/App.vue"]]);
