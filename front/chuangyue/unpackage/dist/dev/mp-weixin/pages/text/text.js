@@ -32,11 +32,30 @@ const _sfc_main = {
         }
       });
     }
+    function send3() {
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: "http://localhost:8080/api/user/doctor",
+        method: "POST",
+        header: {
+          "authorization": token
+        },
+        data: {
+          page: 1,
+          pageSize: 2,
+          sicknessId: 2
+        },
+        success: (res) => {
+          console.log(res.data);
+        }
+      });
+    }
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o((...args) => _ctx.getPhoneNumber && _ctx.getPhoneNumber(...args)),
         b: common_vendor.o(send1),
-        c: common_vendor.o(send2)
+        c: common_vendor.o(send2),
+        d: common_vendor.o(send3)
       };
     };
   }

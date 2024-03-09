@@ -5,6 +5,7 @@
 			<input type="nickname" placeholder="请输入昵称"/>
 			<button type="primary" @click="send1">获取所有的科室</button>
 			<button type="primary" @click="send2">获取对应科室的所属疾病</button>
+			<button type="primary" @click="send3">获取能治某个疾病的所有医生</button>
 		</view>
 	</view>
 </template>
@@ -34,6 +35,25 @@
 			},
 			data:{
 				deptId: 2
+			},
+			success: (res) => {
+				console.log(res.data);
+			}
+		})
+	}
+	
+	function send3(){
+		let token=uni.getStorageSync('authorization');
+		uni.request({
+			url: 'http://localhost:8080/api/user/doctor',
+			method:'POST',
+			header:{
+				'authorization' : token,
+			},
+			data:{
+				page: 1,
+				pageSize: 2,
+				sicknessId: 2
 			},
 			success: (res) => {
 				console.log(res.data);

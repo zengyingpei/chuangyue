@@ -16,6 +16,8 @@ if (!Math) {
   "./pages/text/text.js";
   "./pages/my/update_user_message.js";
   "./pages/questionnaire/questionnaire.js";
+  "./pages/select_find/select_find.js";
+  "./pages/doctor_list/doctor_list.js";
 }
 const _sfc_main = {
   onLaunch: function() {

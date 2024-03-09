@@ -85,6 +85,22 @@
 				"navigationBarTitleText" : "问卷测评",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/select_find/select_find",
+			"style" : 
+			{
+				"navigationBarTitleText" : "找医生",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/doctor_list/doctor_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : "找医生",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

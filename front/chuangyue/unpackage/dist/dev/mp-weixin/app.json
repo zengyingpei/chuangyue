@@ -10,7 +10,9 @@
     "pages/login/login",
     "pages/text/text",
     "pages/my/update_user_message",
-    "pages/questionnaire/questionnaire"
+    "pages/questionnaire/questionnaire",
+    "pages/select_find/select_find",
+    "pages/doctor_list/doctor_list"
   ],
   "window": {
     "navigationBarTextStyle": "black",

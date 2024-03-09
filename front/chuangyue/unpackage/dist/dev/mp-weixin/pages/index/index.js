@@ -3,20 +3,8 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   data() {
     return {
-      arr1: [
-        { id: 1, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 2, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 3, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 4, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 5, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" }
-      ],
-      arr2: [
-        { id: 1, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 2, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 3, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 4, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" },
-        { id: 5, doc_name: "zyp", photo: "", position: "主任", address: "guanzhou", good: "asda" }
-      ],
+      arr1: null,
+      arr2: null,
       list1: [
         { id: 1, name: "失眠" },
         { id: 2, name: "月经不调" },
@@ -46,31 +34,66 @@ const _sfc_main = {
       ]
     };
   },
-  methods: {}
+  onLoad(option) {
+    this.getDatas();
+  },
+  methods: {
+    goToFind() {
+      common_vendor.index.navigateTo({
+        url: "/pages/select_find/select_find"
+      });
+    },
+    getDatas() {
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: "http://localhost:8080/api/user/doctor/select_doc",
+        method: "GET",
+        header: {
+          authorization: token
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            console.log(res.data.data);
+            this.arr1 = res.data.data.slice(0, 5);
+            this.arr2 = res.data.data.slice(5, 10);
+          } else {
+            common_vendor.index.showToast({
+              duration: 1e3,
+              icon: "error",
+              title: "数据获取失败"
+            });
+          }
+        }
+      });
+    }
+  }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.f($data.list1, (item, index, i0) => {
+    a: common_vendor.o((...args) => $options.goToFind && $options.goToFind(...args)),
+    b: common_vendor.f($data.list1, (item, index, i0) => {
       return {
         a: common_vendor.t($data.list1[index].name),
         b: common_vendor.t($data.list2[index].name),
         c: item.id
       };
     }),
-    b: common_vendor.f($data.arr1, (item, index, i0) => {
+    c: common_vendor.f($data.arr1, (item, index, i0) => {
       return {
-        a: common_vendor.t($data.arr1[index].doc_name),
-        b: common_vendor.t($data.arr1[index].position),
-        c: common_vendor.t($data.arr1[index].address),
-        d: common_vendor.t($data.arr1[index].good),
-        e: common_vendor.t($data.arr2[index].doc_name),
-        f: common_vendor.t($data.arr2[index].position),
-        g: common_vendor.t($data.arr2[index].address),
-        h: common_vendor.t($data.arr2[index].good),
-        i: item.id
+        a: $data.arr1[index].avatar,
+        b: common_vendor.t($data.arr1[index].name),
+        c: common_vendor.t($data.arr1[index].level),
+        d: common_vendor.t($data.arr1[index].workplace),
+        e: common_vendor.t($data.arr1[index].desc),
+        f: $data.arr2[index].avatar,
+        g: common_vendor.t($data.arr2[index].name),
+        h: common_vendor.t($data.arr2[index].level),
+        i: common_vendor.t($data.arr2[index].workplace),
+        j: common_vendor.t($data.arr2[index].desc),
+        k: item.id
       };
     }),
-    c: common_vendor.f($data.consults, (item, index, i0) => {
+    d: common_vendor.f($data.consults, (item, index, i0) => {
       return {
         a: common_vendor.t(item.title),
         b: common_vendor.t(item.from),

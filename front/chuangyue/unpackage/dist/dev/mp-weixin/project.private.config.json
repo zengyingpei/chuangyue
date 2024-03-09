@@ -9,6 +9,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/doctor_list/doctor_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/my/update_user_message",
           "query": "",
           "launchMode": "default",

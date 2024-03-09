@@ -1,6 +1,6 @@
 <template>
 	<view class="section">
-		<view class="left">
+		<view class="left" @click="goToFind">
 			<view class="text1">
 				按疾病找
 			</view>
@@ -87,16 +87,16 @@
 					<view class="doc_content">
 						<view class="doc_card">
 							<view class="doc_left_img">
-								<image class="doc_images" src="../../static/logo.png" mode=""></image>
+								<image class="doc_images" :src="arr1[index].avatar" mode=""></image>
 							</view>
 							<view class="doc_right_info">
 								<view class="doc_info_top">
-									<text class="doc_name">{{arr1[index].doc_name}}</text>
-									<text class="doc_description">{{arr1[index].position}}</text>
+									<text class="doc_name">{{arr1[index].name}}</text>
+									<text class="doc_description">{{arr1[index].level}}</text>
 								</view>
 								<view class="doc_info_bom">
-									<view class="doc_info_bom_up">{{arr1[index].address}}</view>
-									<view class="doc_info_bom_down">{{arr1[index].good}}</view>
+									<view class="doc_info_bom_up">{{arr1[index].workplace}}</view>
+									<view class="doc_info_bom_down">{{arr1[index].desc}}</view>
 								</view>
 							</view>
 						</view>
@@ -104,16 +104,16 @@
 						
 						<view class="doc_card">
 							<view class="doc_left_img">
-								<image class="doc_images" src="../../static/logo.png" mode=""></image>
+								<image class="doc_images" :src="arr2[index].avatar" mode=""></image>
 							</view>
 							<view class="doc_right_info">
 								<view class="doc_info_top">
-									<text class="doc_name">{{arr2[index].doc_name}}</text>
-									<text class="doc_description">{{arr2[index].position}}</text>
+									<text class="doc_name">{{arr2[index].name}}</text>
+									<text class="doc_description">{{arr2[index].level}}</text>
 								</view>
 								<view class="doc_info_bom">
-									<view class="doc_info_bom_up">{{arr2[index].address}}</view>
-									<view class="doc_info_bom_down">{{arr2[index].good}}</view>
+									<view class="doc_info_bom_up">{{arr2[index].workplace}}</view>
+									<view class="doc_info_bom_down">{{arr2[index].desc}}</view>
 								</view>
 							</view>
 						</view>
@@ -163,20 +163,8 @@
 		
 		data() {
 			return {
-				arr1:[
-					{id:1, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:2, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:3, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:4, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:5, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"}
-				],
-				arr2:[
-					{id:1, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:2, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:3, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:4, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"},
-					{id:5, doc_name:"zyp", photo:"", position:"主任", address:"guanzhou",good:"asda"}
-				],
+				arr1:null,
+				arr2:null,
 				list1:[
 					{id:1, name:"失眠"},
 					{id:2, name:"月经不调"},
@@ -208,8 +196,38 @@
 				
 			}
 		},
+		onLoad (option){
+			this.getDatas();	//首页动态资源加载
+		},
 		methods: {
-			
+			goToFind(){
+				uni.navigateTo({
+					url:'/pages/select_find/select_find'
+				})
+			},
+			getDatas(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: 'http://localhost:8080/api/user/doctor/select_doc',
+					method:'GET',
+					header:{
+						authorization : token
+					},
+					success: (res) => {
+						if(res.data.code==1){
+							console.log(res.data.data);
+							this.arr1=res.data.data.slice(0,5);
+							this.arr2=res.data.data.slice(5,10);
+						}else{
+							uni.showToast({
+								duration:1000,
+								icon:'error',
+								title:"数据获取失败"
+							})
+						}
+					}
+				})
+			}
 		}
 	}
 </script>
