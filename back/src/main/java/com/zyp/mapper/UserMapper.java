@@ -15,4 +15,7 @@ public interface UserMapper {
     User selectByOpenid(String openid);
 
     void insert(User user);
+
+    @Update("update user set name=#{name}, phone=#{phone}, sex=#{sex}, id_number=#{idNumber} where id=#{id}")
+    void update(User user);
 }

@@ -38,7 +38,15 @@ const _sfc_main = {
             success: (res2) => {
               if (res2.data.code == 1) {
                 console.log("成功 ", res2.data);
-                common_vendor.index.setStorageSync("token", res2.data.data.token);
+                common_vendor.index.setStorageSync("authorization", res2.data.data.token);
+                common_vendor.index.showToast({
+                  duration: 1e3,
+                  icon: "success",
+                  title: "登录成功"
+                });
+                common_vendor.index.switchTab({
+                  url: "/pages/index/index"
+                });
               } else {
                 console.log("失败 ", res2.data.message);
               }

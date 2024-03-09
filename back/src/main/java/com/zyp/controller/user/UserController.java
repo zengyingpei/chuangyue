@@ -1,6 +1,8 @@
 package com.zyp.controller.user;
 
+import com.zyp.dto.UserDto;
 import com.zyp.dto.WxUserLoginDto;
+import com.zyp.mapper.UserMapper;
 import com.zyp.pojo.Result;
 import com.zyp.pojo.User;
 import com.zyp.properties.JwtProperties;
@@ -54,5 +56,12 @@ public class UserController {
                 .token(token)
                 .build();
         return Result.success(wxUserLoginVo);
+    }
+
+    @ApiOperation("修改用户信息")
+    @PostMapping("update")
+    public Result update(@RequestBody UserDto userDto){
+        userService.update(userDto);
+        return Result.success();
     }
 }

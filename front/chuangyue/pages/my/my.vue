@@ -9,7 +9,7 @@
 				
 				<view class="info_phone">18770718990</view>
 				
-				<view class="update_message">
+				<view class="update_message" @click="goToUpdateMessage">
 					修改账号信息
 				</view>
 			</view>
@@ -20,15 +20,6 @@
 				</view>
 			</view>
 			
-			<!-- <view class="photo">
-				<image src="../../static/logo.png" mode="aspectFill"></image>
-			</view>
-			<view class="name">
-				流泪猫猫头
-			</view>
-			<view class="address">
-				安徽省淮南市安徽理工大学
-			</view> -->
 			
 		</view>
 		
@@ -118,6 +109,11 @@
 			goToLogin(){
 				uni.navigateTo({
 					url: '/pages/login/login'
+				})
+			},
+			goToUpdateMessage(){
+				uni.navigateTo({
+					url:'/pages/my/update_user_message'
 				})
 			}
 		}

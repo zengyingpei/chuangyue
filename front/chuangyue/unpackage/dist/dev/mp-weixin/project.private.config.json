@@ -9,6 +9,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/my/update_user_message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/text/text",
           "query": "",
           "launchMode": "default",

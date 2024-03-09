@@ -2,6 +2,7 @@ package com.zyp.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.zyp.dto.UserDto;
 import com.zyp.dto.WxUserLoginDto;
 import com.zyp.exception.LoginFailedException;
 import com.zyp.mapper.UserMapper;
@@ -9,7 +10,9 @@ import com.zyp.pojo.User;
 import com.zyp.properties.WeChatProperties;
 import com.zyp.service.UserService;
 import com.zyp.utils.HttpClientUtil;
+import com.zyp.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,5 +70,14 @@ public class UserServiceImpl implements UserService {
             userMapper.insert(user);
         }
         return user;
+    }
+
+    @Override
+    public void update(UserDto userDto) {
+        User user=new User();
+        BeanUtils.copyProperties(userDto, user);
+        Long id=ThreadLocalUtil.get();
+        user.setId(id);
+        userMapper.update(user);
     }
 }

@@ -8,7 +8,9 @@
     "pages/keep_medicine/keep_medicine",
     "pages/about/about",
     "pages/login/login",
-    "pages/text/text"
+    "pages/text/text",
+    "pages/my/update_user_message",
+    "pages/questionnaire/questionnaire"
   ],
   "window": {
     "navigationBarTextStyle": "black",
