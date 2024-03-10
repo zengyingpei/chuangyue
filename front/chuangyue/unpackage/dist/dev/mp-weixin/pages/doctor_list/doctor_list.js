@@ -57,6 +57,12 @@ const _sfc_main = {
     //下面是处理重新选择疾病分类
     goToBack() {
       common_vendor.index.navigateBack();
+    },
+    // 进入医生详情页
+    goDetail(doctorId) {
+      common_vendor.index.navigateTo({
+        url: `/pages/doctor_detail/doctor_detail?doctorId=${doctorId}`
+      });
     }
   }
 };
@@ -88,7 +94,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         c: common_vendor.t(item.level),
         d: common_vendor.t(item.workplace),
         e: common_vendor.t(item.desc),
-        f: item.id
+        f: item.id,
+        g: common_vendor.o(($event) => $options.goDetail(item.id), item.id)
       };
     })
   };

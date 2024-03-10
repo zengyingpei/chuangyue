@@ -27,7 +27,7 @@ chuangyue:
   jwt:
     user-secret-key: chuangyue
     user-token-name: authorization
-    user-ttl: 7200000
+    user-ttl: 86400000
   wechat:
     appid: ${chuangyue.wechat.appid}
     secret: ${chuangyue.wechat.secret}

@@ -12,7 +12,8 @@
     "pages/my/update_user_message",
     "pages/questionnaire/questionnaire",
     "pages/select_find/select_find",
-    "pages/doctor_list/doctor_list"
+    "pages/doctor_list/doctor_list",
+    "pages/doctor_detail/doctor_detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

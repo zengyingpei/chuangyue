@@ -16,7 +16,7 @@
 			</view>
 		</view>
 		
-		<view class="doc_card" v-for="(item, index) in doctors" :key="item.id">
+		<view class="doc_card" v-for="(item, index) in doctors" :key="item.id" @click="goDetail(item.id)">
 			<view class="doc_left_img">
 				<image class="doc_images" :src="item.avatar" mode=""></image>
 			</view>
@@ -96,10 +96,15 @@
 			
 			//下面是处理重新选择疾病分类
 			goToBack(){
-				// uni.navigateTo({
-				// 	url:'/pages/select_find/select_find'		//暂时不传参数
-				// })
 				uni.navigateBack();
+			},
+			
+			
+			// 进入医生详情页
+			goDetail(doctorId){
+				uni.navigateTo({
+					url: `/pages/doctor_detail/doctor_detail?doctorId=${doctorId}`
+				})
 			}
 		}
 		

@@ -101,6 +101,14 @@
 				"navigationBarTitleText" : "找医生",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/doctor_detail/doctor_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
