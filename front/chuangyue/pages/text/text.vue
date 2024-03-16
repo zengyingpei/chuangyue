@@ -10,56 +10,118 @@
 	</view>
 </template>
 
-<script setup>
-	function send1(){
-		let token=uni.getStorageSync('authorization');
-		uni.request({
-			url: 'http://localhost:8080/api/user/department',
-			header: {
-				authorization : token
+<script>
+	import {baseUrl} from '../../common/js/utils.js'
+	
+	export default{
+		data(){
+			return{
+				
+			};
+		},
+		onLoad(option){
+			console.log(baseUrl);
+		},
+		methods:{
+			send1(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: `${baseUrl}/api/user/department`,
+					header: {
+						authorization : token
+					},
+					method:'GET',
+					success: (res) => {
+						console.log(res.data);
+					}
+				})
 			},
-			method:'GET',
-			success: (res) => {
-				console.log(res.data);
+			send2(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: 'http://localhost:8080/api/user/sickness',
+					method:'GET',
+					header: {
+						authorization : token
+					},
+					data:{
+						deptId: 2
+					},
+					success: (res) => {
+						console.log(res.data);
+					}
+				})
+			},
+			send3(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: 'http://localhost:8080/api/user/doctor',
+					method:'POST',
+					header:{
+						'authorization' : token,
+					},
+					data:{
+						page: 1,
+						pageSize: 2,
+						sicknessId: 2
+					},
+					success: (res) => {
+						console.log(res.data);
+					}
+				})
 			}
-		})
+		}
 	}
 	
-	function send2(){
-		let token=uni.getStorageSync('authorization');
-		uni.request({
-			url: 'http://localhost:8080/api/user/sickness',
-			method:'GET',
-			header: {
-				authorization : token
-			},
-			data:{
-				deptId: 2
-			},
-			success: (res) => {
-				console.log(res.data);
-			}
-		})
-	}
+	// function send1(){
+	// 	let token=uni.getStorageSync('authorization');
+	// 	uni.request({
+	// 		url: 'http://localhost:8080/api/user/department',
+	// 		header: {
+	// 			authorization : token
+	// 		},
+	// 		method:'GET',
+	// 		success: (res) => {
+	// 			console.log(res.data);
+	// 		}
+	// 	})
+	// }
 	
-	function send3(){
-		let token=uni.getStorageSync('authorization');
-		uni.request({
-			url: 'http://localhost:8080/api/user/doctor',
-			method:'POST',
-			header:{
-				'authorization' : token,
-			},
-			data:{
-				page: 1,
-				pageSize: 2,
-				sicknessId: 2
-			},
-			success: (res) => {
-				console.log(res.data);
-			}
-		})
-	}
+	// function send2(){
+	// 	let token=uni.getStorageSync('authorization');
+	// 	uni.request({
+	// 		url: 'http://localhost:8080/api/user/sickness',
+	// 		method:'GET',
+	// 		header: {
+	// 			authorization : token
+	// 		},
+	// 		data:{
+	// 			deptId: 2
+	// 		},
+	// 		success: (res) => {
+	// 			console.log(res.data);
+	// 		}
+	// 	})
+	// }
+	
+	// function send3(){
+	// 	let token=uni.getStorageSync('authorization');
+	// 	uni.request({
+	// 		url: 'http://localhost:8080/api/user/doctor',
+	// 		method:'POST',
+	// 		header:{
+	// 			'authorization' : token,
+	// 		},
+	// 		data:{
+	// 			page: 1,
+	// 			pageSize: 2,
+	// 			sicknessId: 2
+	// 		},
+	// 		success: (res) => {
+	// 			console.log(res.data);
+	// 		}
+	// 	})
+	// }
 </script>
 
 <style lang="scss">

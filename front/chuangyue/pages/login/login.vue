@@ -19,6 +19,7 @@
 	</view>
 </template>
 <script>
+	import {baseUrl} from '../../common/js/utils.js'
 	export default {
 		data() {
 			return {
@@ -51,7 +52,7 @@
 						that.code=res.code;
 						console.log("res ", that.code );
 						uni.request({
-							url: 'http://localhost:8080/api/user/user/login',
+							url: `${baseUrl}/api/user/user/login`,
 							method: 'POST',
 							data:{
 								code : that.code

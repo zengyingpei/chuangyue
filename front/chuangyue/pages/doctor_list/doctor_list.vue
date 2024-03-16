@@ -35,6 +35,7 @@
 </template>
 
 <script>
+	import {baseUrl} from '../../common/js/utils.js'
 	export default {
 		data() {
 			return {
@@ -68,7 +69,7 @@
 			getDatas(sicknessId){
 				let token=uni.getStorageSync('authorization');
 				uni.request({
-					url: 'http://localhost:8080/api/user/doctor',
+					url: `${baseUrl}/api/user/doctor`,
 					method:'POST',
 					header:{
 						'authorization' : token,

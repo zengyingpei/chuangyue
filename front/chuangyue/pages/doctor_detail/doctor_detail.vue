@@ -175,6 +175,7 @@
 </template>
 
 <script>
+	import {baseUrl} from '../../common/js/utils.js'
 	export default {
 		data() {
 			return {
@@ -190,7 +191,7 @@
 			getDatas(doctorId){
 				let token=uni.getStorageSync('authorization');
 				uni.request({
-					url: 'http://localhost:8080/api/user/doctor/detail',
+					url: `${baseUrl}/api/user/doctor/detail`,
 					method:"POST",
 					data:{
 						id: doctorId

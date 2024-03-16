@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const common_js_utils = require("../../common/js/utils.js");
 const _sfc_main = {
   data() {
     return {
@@ -31,7 +32,7 @@ const _sfc_main = {
     getDatas(sicknessId) {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
-        url: "http://localhost:8080/api/user/doctor",
+        url: `${common_js_utils.baseUrl}/api/user/doctor`,
         method: "POST",
         header: {
           "authorization": token

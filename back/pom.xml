@@ -98,7 +98,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
-
     <!--  knife4j集成swagger生成的api文档增强解决方案  -->
     <dependency>
       <groupId>com.github.xiaoymin</groupId>

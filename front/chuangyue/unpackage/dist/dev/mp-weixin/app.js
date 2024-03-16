@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
-const common_js_utils = require("./common/js/utils.js");
 const store_index = require("./store/index.js");
 require("./store/modules/user.js");
 if (!Math) {
@@ -30,9 +29,7 @@ const _sfc_main = {
   onHide: function() {
     console.log("App Hide");
   },
-  globalData: {
-    utils: common_js_utils.Utils
-  }
+  globalData: {}
 };
 const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/chuangyue/front/chuangyue/App.vue"]]);
 function createApp() {

@@ -35,6 +35,7 @@
 </template>
 
 <script >
+	import {baseUrl} from '../../common/js/utils.js'
 	export default {
 		data() {
 			return {
@@ -50,7 +51,7 @@
 			onSubmit(){
 				let token=uni.getStorageSync('authorization');
 				uni.request({
-					url: 'http://localhost:8080/api/user/user/update',
+					url: `${baseUrl}/api/user/user/update`,
 					method:'POST',
 					header: {
 						authorization : token

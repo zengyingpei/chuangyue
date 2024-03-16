@@ -157,7 +157,7 @@
 </template>
 
 <script>
-	
+	import {baseUrl} from '../../common/js/utils.js'
 	
 	export default {
 		
@@ -208,7 +208,7 @@
 			getDatas(){
 				let token=uni.getStorageSync('authorization');
 				uni.request({
-					url: 'http://localhost:8080/api/user/doctor/select_doc',
+					url: `${baseUrl}/api/user/doctor/select_doc`,
 					method:'GET',
 					header:{
 						authorization : token

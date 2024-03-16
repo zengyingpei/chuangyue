@@ -1,5 +1,6 @@
 package com.zyp.config;
 
+import com.zyp.interceptor.AdminLoginInterceptor;
 import com.zyp.interceptor.UserLoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +53,18 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
     private UserLoginInterceptor userLoginInterceptor;
+    @Autowired
+    private AdminLoginInterceptor adminLoginInterceptor;
+
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
         registry.addInterceptor(userLoginInterceptor)
                 .addPathPatterns("/api/user/**")
                 .excludePathPatterns("/api/user/user/login");
+
+        registry.addInterceptor(adminLoginInterceptor)
+                .addPathPatterns("/api/admin/**")
+                .excludePathPatterns("/api/admin/admin/login");
     }
 
 }
