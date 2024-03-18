@@ -53,7 +53,6 @@ public class AdminLoginController {
         AdminLoginVo adminLoginVo=AdminLoginVo.builder()
                 .id(admin.getId())
                 .username(admin.getUsername())
-                .password(admin.getPassword())
                 .name(admin.getName())
                 .token(token)
                 .build();

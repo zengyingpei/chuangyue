@@ -51,7 +51,7 @@ export default {
     let password = ref("");
     let error_message = ref("");
 
-    let jwt_token = localStorage.getItem("jwt_token");
+    let jwt_token = localStorage.getItem("token");
     if (jwt_token) {
       store.commit("updateToken", jwt_token);
       store.dispatch("getinfo", {
@@ -74,9 +74,20 @@ export default {
           password: password.value,
         }),
         success: (res) => {
-            if(res.code ==1){
-                console.log("登录成功");
-            }
+          if (res.code == 1) {
+            console.log(res);
+            localStorage.setItem("token", res.data.token); //存在本地缓存中
+            store.commit("updateToken", res.data.token); //更新全局的vuex中的token
+            store.commit("updateUser", {
+              id: res.data.id,
+              username: res.data.username,
+              name: res.data.name,
+              is_login: true,
+            });
+            router.push({ name: "home" }); //
+          } else {
+            error_message.value = res.message;
+          }
         },
       });
     };

@@ -1,12 +1,13 @@
 package com.zyp.mapper;
 
 import com.github.pagehelper.Page;
+import com.zyp.dto.AdminDoctorPageQueryDto;
 import com.zyp.dto.DoctorPageQueryDto;
 import com.zyp.pojo.Doctor;
 import com.zyp.pojo.DoctorDetail;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
+import javax.annotation.PropertyKey;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -76,4 +77,39 @@ public interface DoctorMapper {
      */
     @Select("select d.name from department d left outer join sickness s on d.id = s.dept_id where s.id in (select ds.sickness_id from doc_sick ds left outer join doctor d on ds.doc_id = d.id where d.id = #{id})")
     List<String> selectDeptOfDoctor(Long id);
+
+    /**
+     * @ description G端分页查询医生信息
+     * @param adminDoctorPageQueryDto
+     * @ return com.github.pagehelper.Page<com.zyp.pojo.Doctor>
+     * @ author DELL
+     */
+    Page<Doctor> pageQuery(AdminDoctorPageQueryDto adminDoctorPageQueryDto);
+
+    /**
+     * @ description 新增医生基础信息
+     * @param doctor
+     * @ return void
+     * @ author DELL
+     */
+    @Insert("insert into doctor (name, age, phone, avatar, workplace, level, `desc`) values(#{name}, #{age},#{phone},#{avatar},#{workplace},#{level},#{desc})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insert(Doctor doctor);
+
+    /**
+     * @ description 根据id删除信息
+     * @param id
+     * @ return void
+     * @ author DELL
+     */
+    @Delete("delete from doctor where id = #{id}")
+    void deleteById(Long id);
+
+    /**
+     * @ description 修改医生的基本信息
+     * @param doctor
+     * @ return void
+     * @ author DELL
+     */
+    void update(Doctor doctor);
 }
