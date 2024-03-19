@@ -1,6 +1,18 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+require("../../store/index.js");
 const _sfc_main = {
+  computed: {
+    username() {
+      return this.$store.state.username;
+    },
+    avatar() {
+      return this.$store.state.avatar;
+    },
+    isLogin() {
+      return this.$store.state.is_login;
+    }
+  },
   data() {
     return {
       section1: [
@@ -51,24 +63,32 @@ const _sfc_main = {
   }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.o((...args) => $options.goToLogin && $options.goToLogin(...args)),
-    b: common_vendor.o((...args) => $options.goToUpdateMessage && $options.goToUpdateMessage(...args)),
-    c: common_vendor.f($data.section1, (item, k0, i0) => {
+  return common_vendor.e({
+    a: $options.isLogin == 1
+  }, $options.isLogin == 1 ? {
+    b: $options.avatar
+  } : {}, {
+    c: common_vendor.o((...args) => $options.goToLogin && $options.goToLogin(...args)),
+    d: $options.isLogin == 1
+  }, $options.isLogin == 1 ? {
+    e: common_vendor.t($options.username)
+  } : {}, {
+    f: common_vendor.o((...args) => $options.goToUpdateMessage && $options.goToUpdateMessage(...args)),
+    g: common_vendor.f($data.section1, (item, k0, i0) => {
       return {
         a: item.img,
         b: common_vendor.t(item.title),
         c: item.id
       };
     }),
-    d: common_vendor.f($data.section2, (item, k0, i0) => {
+    h: common_vendor.f($data.section2, (item, k0, i0) => {
       return {
         a: item.img,
         b: common_vendor.t(item.title),
         c: item.id
       };
     }),
-    e: common_vendor.f($data.section3, (item, k0, i0) => {
+    i: common_vendor.f($data.section3, (item, k0, i0) => {
       return {
         a: item.img,
         b: common_vendor.t(item.title),
@@ -76,7 +96,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         d: common_vendor.o(($event) => $options.goToAbout(item.id), item.id)
       };
     })
-  };
+  });
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-2f1ef635"], ["__file", "D:/chuangyue/front/chuangyue/pages/my/my.vue"]]);
 wx.createPage(MiniProgramPage);

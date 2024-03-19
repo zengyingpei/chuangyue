@@ -1,15 +1,29 @@
 // 页面路径：store/index.js
 import { createStore } from 'vuex'
-import user from './modules/user.js'
 
 const store = createStore({
 	state:{//存放状态
-		"username":"foo",
-		"age":18
+		username:'',
+		avatar:'',
+		token:'',
+		is_login:0
 	},
-	modules: {
-		user
+	mutations:{
+		updateUsername(state, username){
+			state.username= username
+		},
+		updateAvatar(state,avatar){
+			state.avatar = avatar
+		},
+		updateToken(state,token){
+			state.token = token
+		},
+		updateIsLogin(state,is_login){
+			state.is_login = is_login;
+		}
+		
 	}
+	
 })
 
 export default store

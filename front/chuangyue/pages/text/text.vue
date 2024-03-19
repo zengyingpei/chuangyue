@@ -6,18 +6,24 @@
 			<button type="primary" @click="send1">获取所有的科室</button>
 			<button type="primary" @click="send2">获取对应科室的所属疾病</button>
 			<button type="primary" @click="send3">获取能治某个疾病的所有医生</button>
+			<view class="">{{username}}</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import {baseUrl} from '../../common/js/utils.js'
-	
+	import store from '@/store/index.js'
 	export default{
 		data(){
 			return{
 				
 			};
+		},
+		computed:{
+			username(){
+				return store.state.username
+			}
 		},
 		onLoad(option){
 			console.log(baseUrl);

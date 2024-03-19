@@ -20,6 +20,8 @@
 </template>
 <script>
 	import {baseUrl} from '../../common/js/utils.js'
+	import store from '@/store/index.js'
+	
 	export default {
 		data() {
 			return {
@@ -45,6 +47,7 @@
 				} = e.detail;
 				this.avatarUrl = avatarUrl
 			},
+			
 			onSubmit() {
 				let that=this;
 				uni.login({
@@ -60,6 +63,13 @@
 							success: (res) => {
 								if(res.data.code == 1){		//如果返回的数据code为1标识成功
 									console.log("成功 ",res.data)
+									// vuex状态管理
+									store.commit('updateToken',res.data.data.token);
+									store.commit('updateAvatar',this.avatarUrl);
+									store.commit('updateUsername',this.userName);
+									store.commit('updateIsLogin',1)
+									
+									//将token存到本地
 									uni.setStorageSync('authorization', res.data.data.token);
 									uni.showToast({
 										duration:1000,

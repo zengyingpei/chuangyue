@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_js_utils = require("../../common/js/utils.js");
+const store_index = require("../../store/index.js");
 const _sfc_main = {
   data() {
     return {
@@ -39,6 +40,10 @@ const _sfc_main = {
             success: (res2) => {
               if (res2.data.code == 1) {
                 console.log("成功 ", res2.data);
+                store_index.store.commit("updateToken", res2.data.data.token);
+                store_index.store.commit("updateAvatar", this.avatarUrl);
+                store_index.store.commit("updateUsername", this.userName);
+                store_index.store.commit("updateIsLogin", 1);
                 common_vendor.index.setStorageSync("authorization", res2.data.data.token);
                 common_vendor.index.showToast({
                   duration: 1e3,

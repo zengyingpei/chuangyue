@@ -1,13 +1,14 @@
 <template>
 	<view class="user_layout">
-		
 		<view class="user_info">
 			<view class="info_up">
 				<view class="info_image" @click="goToLogin">
-					<image class="images" src="../../static/logo.png" mode=""></image>
+					<image class="images" v-if="isLogin==1" :src="avatar" mode=""></image>
+					<image class="images" v-else src="/static/logo.png" mode=""></image>
 				</view>
 				
-				<view class="info_phone">18770718990</view>
+				<view v-if="isLogin == 1" class="info_phone">{{username}}</view>
+				<view v-else class="info_phone" style="font-size: 38rpx;padding-top: 25rpx;">点击头像去登录</view>
 				
 				<view class="update_message" @click="goToUpdateMessage">
 					修改账号信息
@@ -66,7 +67,20 @@
 </template>
 
 <script >
+	import store from '@/store/index.js'
 	export default {
+		computed:{
+			username(){
+				return this.$store.state.username
+			},
+			avatar(){
+				return this.$store.state.avatar
+			},
+			isLogin(){
+				return this.$store.state.is_login
+			}
+		},
+		
 		data() {
 			return {
 				section1:[
@@ -144,8 +158,13 @@
 				.info_phone{
 					padding: 20rpx 20rpx;
 					font-size: 50rpx;
+					width:500rpx;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 				.update_message{
+					
 					margin-top: 25rpx;
 					padding-top: 10rpx;
 					border: 1px solid #eee;

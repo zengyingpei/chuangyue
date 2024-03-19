@@ -44,6 +44,10 @@
 .user_layout .user_info .info_up .info_phone.data-v-2f1ef635 {
   padding: 20rpx 20rpx;
   font-size: 50rpx;
+  width: 500rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .user_layout .user_info .info_up .update_message.data-v-2f1ef635 {
   margin-top: 25rpx;
