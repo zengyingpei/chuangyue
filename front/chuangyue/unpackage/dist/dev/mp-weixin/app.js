@@ -17,6 +17,7 @@ if (!Math) {
   "./pages/select_find/select_find.js";
   "./pages/doctor_list/doctor_list.js";
   "./pages/doctor_detail/doctor_detail.js";
+  "./pages/registration/registration.js";
 }
 const _sfc_main = {
   onLaunch: function() {

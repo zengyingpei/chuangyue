@@ -109,6 +109,14 @@
 				"navigationBarTitleText" : "",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/registration/registration",
+			"style" : 
+			{
+				"navigationBarTitleText" : "预约时间",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

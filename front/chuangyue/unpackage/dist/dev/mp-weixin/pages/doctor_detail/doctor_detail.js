@@ -39,6 +39,11 @@ const _sfc_main = {
           }
         }
       });
+    },
+    goToRegistration() {
+      common_vendor.index.navigateTo({
+        url: `../registration/registration?docId=${this.doctorId}`
+      });
     }
   }
 };
@@ -69,7 +74,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     g: common_vendor.t($data.doctorDetail.specialization),
     h: common_vendor.t($data.doctorDetail.desc),
     i: common_vendor.t($data.doctorDetail.consultCost),
-    j: common_vendor.t($data.doctorDetail.consultCost)
+    j: common_vendor.t($data.doctorDetail.consultCost),
+    k: common_vendor.o(($event) => $options.goToRegistration())
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/chuangyue/front/chuangyue/pages/doctor_detail/doctor_detail.vue"]]);

@@ -13,7 +13,8 @@
     "pages/questionnaire/questionnaire",
     "pages/select_find/select_find",
     "pages/doctor_list/doctor_list",
-    "pages/doctor_detail/doctor_detail"
+    "pages/doctor_detail/doctor_detail",
+    "pages/registration/registration"
   ],
   "window": {
     "navigationBarTextStyle": "black",

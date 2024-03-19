@@ -79,7 +79,7 @@
 					</view>
 				</view>
 				<view class="item_right">
-					<view class="right_button">
+					<view class="right_button" @click="goToRegistration()">
 						去挂号
 					</view>
 				</view>
@@ -211,6 +211,11 @@
 							})
 						}
 					}
+				})
+			},
+			goToRegistration(){
+				uni.navigateTo({
+					url:`../registration/registration?docId=${this.doctorId}`
 				})
 			}
 		}
