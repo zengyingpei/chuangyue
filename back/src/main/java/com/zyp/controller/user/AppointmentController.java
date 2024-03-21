@@ -1,13 +1,12 @@
 package com.zyp.controller.user;
 
+import com.zyp.dto.AddAppointmentDto;
 import com.zyp.pojo.Result;
 import com.zyp.service.AppointmentService;
 import com.zyp.vo.AppointmentOfDoctorVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +30,16 @@ public class AppointmentController {
         return Result.success(list);
     }
 
+    /**
+     * @ description 新增预约
+     * @param addAppointmentDto
+     * @ return com.zyp.pojo.Result
+     * @ author DELL
+     */
+    @PostMapping("/add")
+    public Result addAppointment(@RequestBody AddAppointmentDto addAppointmentDto){
+        log.info("addAppointment的controller{}",addAppointmentDto);
+        appointmentService.addAppointment(addAppointmentDto);
+        return Result.success();
+    }
 }

@@ -7,7 +7,7 @@
 				 <text class="available" style="margin-left: 100rpx; font-size: 30rpx;color: #ff7043;">剩余 {{item.available}}</text>
 			</view>
 			<view class="right">
-				<view class="button">
+				<view class="button" @click="goSubmit(item.id)">
 					预约
 				</view>
 			</view>
@@ -20,10 +20,12 @@
 	export default {
 		data() {
 			return {
+				docId:'',		//接收上一个页面传过来的医生的id 
 				futureDays:[]	// 存储所有可以预约的信息
 			};
 		},
 		onLoad(option){
+			this.docId= option.docId;
 			console.log("传过来的医生id ",option.docId);
 			this.getAppointment(option.docId);
 		},
@@ -32,7 +34,7 @@
 				let token=uni.getStorageSync('authorization');
 				uni.request({
 					url: `${baseUrl}/api/user/appointment/list`,
-					type:'GET',
+					method:"GET",
 					header:{
 						'authorization' : token,
 					},
@@ -44,6 +46,26 @@
 						if(res.data.code == 1){
 							console.log(res.data);
 							this.futureDays=res.data.data;
+						}
+					}
+				})
+			},
+			goSubmit(slotId){
+				let token =uni.getStorageSync('authorization');
+				uni.request({
+					url: `${baseUrl}/api/user/appointment/add`,
+					method:"POST",
+					header:{
+						'authorization' : token,
+					},
+					data:{
+						slotId : slotId,
+						doctorId : this.docId,
+						status: 1
+					},
+					success: (res) => {
+						if(res.data.code == 1 ){
+							console.log(res.data);
 						}
 					}
 				})

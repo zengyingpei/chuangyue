@@ -3,11 +3,19 @@ package com.zyp.mapper;
 import com.zyp.pojo.TimeSlot;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
 public interface TimeSlotMapper {
-    @Select("select * from time_slot where doctor_id = #{docId}")
-    List<TimeSlot> selectByDocId(Long docId);
+    @Select("select * from time_slot where doctor_id = #{docId} and date >= #{time}")
+    List<TimeSlot> selectByDocId(Long docId, LocalDate time);
+
+    @Select("select * from time_slot where id = #{slotId}")
+    TimeSlot selectById(Long slotId);
+
+    @Update("update time_slot set available = available -1 where id =#{slotId} and available >=1")
+    void reduceAvailable(Long slotId);
 }

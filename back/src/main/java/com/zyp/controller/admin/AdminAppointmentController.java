@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/admin/appointment")
 public class AdminAppointmentController {
     public Result addNew(){
-
+        return Result.success();
     }
 }

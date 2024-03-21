@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://101.43.108.196:3306/chuangyue
     username: root
-    password: 123456
+    password: 12345678
     hikari:
       max-lifetime: 60000
   data:
