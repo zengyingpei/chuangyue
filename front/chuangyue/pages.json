@@ -117,6 +117,14 @@
 				"navigationBarTitleText" : "预约时间",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/shopping_cart/shopping_cart",
+			"style" : 
+			{
+				"navigationBarTitleText" : "购物车",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

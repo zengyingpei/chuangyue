@@ -2,8 +2,8 @@
 	<view>
 		
 		<view class="buy_car">
-			<image src="../../static/icons/buy_car.svg" mode=""></image>
-			<view class="buy_car_text">我的购物车</view>
+			<image src="../../static/icons/buy_car.svg" @click="goShoppingCart()"></image>
+			<view class="buy_car_text" @click="goShoppingCart()">我的购物车</view>
 		</view>
 		<view class="">
 			<view class="search">
@@ -23,40 +23,87 @@
 				
 				<view class="item" v-for="(item, index) in arr" :key="item.id">
 					<view class="item_img">
-						<image src="../../static/logo.png" mode=""></image>
+						<image :src="item.image" mode=""></image>
 					</view>
 					<view class="description">{{item.name}}</view>
 					<view class="item_bom">
 						<view class="price">￥{{item.price}}</view>
 						<view class="add">
-							<image src="../../static/icons/add.svg" mode=""></image>
+							
+							<image v-if="item.number===0" src="../../static/icons/no.svg" @click="showNoStorage()"></image>
+							<image v-else src="../../static/icons/add.svg" @click="addToShoppingCart(item.id)" ></image>
 						</view>
 					</view>
 				</view>
+				
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {baseUrl} from '../../common/js/utils.js'
 	export default {
 		data() {
 			return {
-				arr:[
-					{id:1, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:2, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:3, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:4, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:5, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:6, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:7, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:8, name:"黄连上清片",price:"100", photo:"../../static/logo.png"},
-					{id:9, name:"黄连上清片",price:"100", photo:"../../static/logo.png"}
-				]
+				arr:[]
 			}
 		},
+		onLoad(option){
+			this.getDatas();
+		},
 		methods: {
-			
+			getDatas(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: `${baseUrl}/api/user/medicine/list1`,
+					method:"GET",
+					header:{
+						'authorization' : token,
+					},
+					success: (res) => {
+						if(res.data.code == 1){
+							console.log(res.data);
+							this.arr = res.data.data;
+						}
+					}
+				})
+			},
+			showNoStorage(){
+				uni.showToast({
+					duration:1000,
+					title:"抱歉，当前无货",
+					icon:"error"
+				})
+			},
+			goShoppingCart(){
+				uni.navigateTo({
+					url: '/pages/shopping_cart/shopping_cart'
+				})
+			},
+			addToShoppingCart(medicine_id){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: `${baseUrl}/api/user/shoppingcart/addNew`,
+					method:"POST",
+					header:{
+						'authorization' : token,
+					},
+					data:{
+						medicineId : medicine_id,
+					},
+					success: (res) => {
+						if(res.data.code == 1 ){
+							console.log(res.data);
+							uni.showToast({
+								duration:1000,
+								title:"添加成功",
+								icon:"success"
+							})
+						}
+					}
+				})
+			}
 		}
 	}
 </script>

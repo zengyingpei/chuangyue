@@ -18,6 +18,7 @@ if (!Math) {
   "./pages/doctor_list/doctor_list.js";
   "./pages/doctor_detail/doctor_detail.js";
   "./pages/registration/registration.js";
+  "./pages/shopping_cart/shopping_cart.js";
 }
 const _sfc_main = {
   onLaunch: function() {

@@ -9,6 +9,20 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/shopping_cart/shopping_cart",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/doctor_list/doctor_list",
           "query": "",
           "launchMode": "default",
