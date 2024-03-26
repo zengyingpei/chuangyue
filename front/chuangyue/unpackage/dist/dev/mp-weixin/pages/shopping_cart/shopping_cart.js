@@ -13,9 +13,11 @@ const _sfc_main = {
     this.getDatas();
   },
   methods: {
+    // 初始化辅助数组
     initAssist() {
       this.assist = new Array(this.arr.length).fill(0);
     },
+    // 初始化购物车信息
     getDatas() {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
@@ -40,6 +42,7 @@ const _sfc_main = {
         }
       });
     },
+    // 刷新购物车信息
     freshDatas() {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
@@ -63,6 +66,7 @@ const _sfc_main = {
         }
       });
     },
+    // 购买数 加一
     addOne(shoppingcartId) {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
@@ -79,10 +83,18 @@ const _sfc_main = {
           if (res.data.code == 1) {
             console.log(res.data);
             this.freshDatas();
+          } else {
+            console.log(res.data);
+            common_vendor.index.showToast({
+              duration: 1e3,
+              title: "不能再多了,库存不足了",
+              icon: "error"
+            });
           }
         }
       });
     },
+    // 购买数 减一
     subOne(shoppingcartId) {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
@@ -103,6 +115,7 @@ const _sfc_main = {
         }
       });
     },
+    // 从购物车删除
     toDelete(id) {
       let token = common_vendor.index.getStorageSync("authorization");
       common_vendor.index.request({
@@ -122,6 +135,7 @@ const _sfc_main = {
         }
       });
     },
+    // 修改选中状态
     onUpdate(index) {
       if (this.assist[index] === 0) {
         this.assist[index] = 1;
@@ -129,6 +143,7 @@ const _sfc_main = {
         this.assist[index] = 0;
       }
     },
+    // 全选
     selectAll() {
       for (let i = 0; i < this.assist.length; i++) {
         this.assist[i] = 1;

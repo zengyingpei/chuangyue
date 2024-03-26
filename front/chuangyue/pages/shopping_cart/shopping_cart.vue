@@ -60,9 +60,11 @@
 			this.getDatas();
 		},
 		methods:{
+			// 初始化辅助数组
 			initAssist(){
 				this.assist = new Array (this.arr.length).fill(0);
 			},
+			// 初始化购物车信息
 			getDatas(){
 				let token = uni.getStorageSync('authorization')
 				uni.request({
@@ -87,6 +89,7 @@
 					}
 				})
 			},
+			// 刷新购物车信息
 			freshDatas(){
 				let token = uni.getStorageSync('authorization')
 				uni.request({
@@ -110,6 +113,7 @@
 					}
 				})
 			},
+			// 购买数 加一
 			addOne(shoppingcartId){
 				let token = uni.getStorageSync('authorization')
 				uni.request({
@@ -126,10 +130,18 @@
 						if(res.data.code == 1 ){
 							console.log(res.data);
 							this.freshDatas();
+						}else{
+							console.log(res.data);
+							uni.showToast({
+								duration:1000,
+								title:"不能再多了,库存不足了",
+								icon:"error"
+							})
 						}
 					}
 				})
 			},
+			// 购买数 减一
 			subOne(shoppingcartId){
 				let token = uni.getStorageSync('authorization')
 				uni.request({
@@ -150,6 +162,7 @@
 					}
 				})
 			},
+			// 从购物车删除
 			toDelete(id){
 				let token = uni.getStorageSync('authorization')
 				uni.request({
@@ -169,6 +182,7 @@
 					}
 				})
 			},
+			// 修改选中状态
 			onUpdate(index){
 				if(this.assist[index]===0){
 					this.assist[index] = 1;
@@ -176,6 +190,7 @@
 					this.assist[index] = 0;
 				}
 			},
+			// 全选
 			selectAll(){
 				// 全部改为选中（状态为1）
 				for(let i=0; i < this.assist.length; i++){

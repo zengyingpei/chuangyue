@@ -64,11 +64,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         // 判断是要增加还是减少
         if(num>0){  //增加
             // 2、判断库存是够足够，足够才可以增加购买数量
-            if(storage>=1){
+            if(shoppingCart.getNumber()+1<=storage){
                 shoppingCartMapper.addOne(shoppingcartId,medicine.getPrice(),1);
             }else{  //否则，增加失败
                 throw new NoStorageException("库存不足,无法添加购买数量");
             }
+//            if(storage>=1){
+//                shoppingCartMapper.addOne(shoppingcartId,medicine.getPrice(),1);
+//            }else{  //否则，增加失败
+//                throw new NoStorageException("库存不足,无法添加购买数量");
+//            }
         }else {      //减少
             //如果，要购买的数量不为0，此时可以继续减少
             if (shoppingCart.getNumber() > 1) {
@@ -94,24 +99,29 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         //购物车还没有
         if(shoppingCart==null){
 
-            Long userId = ThreadLocalUtil.get();
+            Integer storage = medicine.getNumber();
+            if(storage >= 1){
+                Long userId = ThreadLocalUtil.get();
 
-            shoppingCart = ShoppingCart.builder()
-                    .userId(userId)
-                    .medicineId(medicineId)
-                    .number(1)
-                    .name(medicine.getName())
-                    .image(medicine.getImage())
-                    .price(medicine.getPrice())
-                    .createTime(LocalDateTime.now())
-                    .updateTime(LocalDateTime.now())
-                    .build();
+                shoppingCart = ShoppingCart.builder()
+                        .userId(userId)
+                        .medicineId(medicineId)
+                        .number(1)
+                        .name(medicine.getName())
+                        .image(medicine.getImage())
+                        .price(medicine.getPrice())
+                        .createTime(LocalDateTime.now())
+                        .updateTime(LocalDateTime.now())
+                        .build();
 
-            shoppingCartMapper.addNew(shoppingCart);
+                shoppingCartMapper.addNew(shoppingCart);
+            }else{
+                throw new NoStorageException("库存不足,无法添加购买数量");
+            }
         }else{  //购物车已经有了
             //判断库存是否足够
             Integer storage = medicine.getNumber();
-            if(storage >= 1){
+            if(shoppingCart.getNumber() + 1 <= storage){
                 shoppingCartMapper.addOne(shoppingCart.getId(), medicine.getPrice(),1);
             }else{
                 throw new NoStorageException("库存不足,无法添加购买数量");

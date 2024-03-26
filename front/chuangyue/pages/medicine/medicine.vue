@@ -100,6 +100,12 @@
 								title:"添加成功",
 								icon:"success"
 							})
+						}else{
+							uni.showToast({
+								duration:1000,
+								title:"不能再多了，库存不足了",
+								icon:"error"
+							})
 						}
 					}
 				})

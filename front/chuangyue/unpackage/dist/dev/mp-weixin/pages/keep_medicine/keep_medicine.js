@@ -1,41 +1,133 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const common_js_utils = require("../../common/js/utils.js");
 const _sfc_main = {
   data() {
     return {
-      sorts: [
-        { id: 1, description: "养生茶饮" },
-        { id: 2, description: "养生茶饮" },
-        { id: 3, description: "养生茶饮" },
-        { id: 4, description: "养生茶饮" },
-        { id: 5, description: "养生茶饮" }
-      ],
-      arr: [
-        { id: 1, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" },
-        { id: 2, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" },
-        { id: 3, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" },
-        { id: 4, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" },
-        { id: 5, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" },
-        { id: 6, name: "胖大海罗汉果橘子茶", price: "100", photo: "../../static/logo.png" }
-      ]
+      sorts: [],
+      arr: []
     };
   },
-  methods: {}
+  onLoad(option) {
+    this.getDatas();
+  },
+  methods: {
+    // 初始化数据
+    getDatas() {
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: `${common_js_utils.baseUrl}/api/user/medicine/list2`,
+        method: "GET",
+        header: {
+          "authorization": token
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            console.log(res.data);
+            this.sorts = res.data.data.categories;
+            this.arr = res.data.data.medicines;
+          }
+        },
+        fail: (err) => {
+          common_vendor.index.showToast({
+            duration: 1e3,
+            title: "数据获取失败",
+            icon: "error"
+          });
+        }
+      });
+    },
+    // 进入购物车
+    goShoppingCart() {
+      common_vendor.index.navigateTo({
+        url: "/pages/shopping_cart/shopping_cart"
+      });
+    },
+    // 添加购物车
+    addToShoppingCart(medicine_id) {
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: `${common_js_utils.baseUrl}/api/user/shoppingcart/addNew`,
+        method: "POST",
+        header: {
+          "authorization": token
+        },
+        data: {
+          medicineId: medicine_id
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            console.log(res.data);
+            common_vendor.index.showToast({
+              duration: 1e3,
+              title: "添加成功",
+              icon: "success"
+            });
+          }
+        }
+      });
+    },
+    //展示无货
+    showNoStorage() {
+      common_vendor.index.showToast({
+        duration: 1e3,
+        title: "抱歉，当前无货",
+        icon: "error"
+      });
+    },
+    // 根据分类筛选
+    onSelect(categoryId) {
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: `${common_js_utils.baseUrl}/api/user/medicine/list2`,
+        method: "GET",
+        header: {
+          "authorization": token
+        },
+        data: {
+          categoryId
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            console.log(res.data);
+            this.arr = res.data.data.medicines;
+          }
+        },
+        fail: (err) => {
+          common_vendor.index.showToast({
+            duration: 1e3,
+            title: "数据获取失败",
+            icon: "error"
+          });
+        }
+      });
+    }
+  }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.f($data.sorts, (item, index, i0) => {
-      return {
-        a: common_vendor.t(item.description),
-        b: item.id
-      };
-    }),
-    b: common_vendor.f($data.arr, (item, index, i0) => {
+    a: common_vendor.o(($event) => $options.goShoppingCart()),
+    b: common_vendor.o(($event) => $options.goShoppingCart()),
+    c: common_vendor.f($data.sorts, (item, index, i0) => {
       return {
         a: common_vendor.t(item.name),
-        b: common_vendor.t(item.price),
-        c: item.id
+        b: item.id,
+        c: common_vendor.o(($event) => $options.onSelect(item.id), item.id)
       };
+    }),
+    d: common_vendor.f($data.arr, (item, index, i0) => {
+      return common_vendor.e({
+        a: item.image,
+        b: common_vendor.t(item.name),
+        c: common_vendor.t(item.price),
+        d: item.number === 0
+      }, item.number === 0 ? {
+        e: common_vendor.o(($event) => $options.showNoStorage(), item.id)
+      } : {
+        f: common_vendor.o(($event) => $options.addToShoppingCart(item.id), item.id)
+      }, {
+        g: item.id
+      });
     })
   };
 }

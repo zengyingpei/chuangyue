@@ -58,6 +58,12 @@ const _sfc_main = {
               title: "添加成功",
               icon: "success"
             });
+          } else {
+            common_vendor.index.showToast({
+              duration: 1e3,
+              title: "不能再多了，库存不足了",
+              icon: "error"
+            });
           }
         }
       });

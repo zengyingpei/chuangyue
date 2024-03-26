@@ -18,13 +18,12 @@ public interface MedicineMapper {
     List<Medicine> selectAll1();
 
     /**
-     * @ description 获取所有的养生药物
+     * @ description 根据分类获取对应的的养生药物
      *
      * @ return java.util.List<com.zyp.pojo.Medicine>
      * @ author DELL
      */
-    @Select("select * from medicine where type = 2")
-    List<Medicine> selectAll2();
+    List<Medicine> selectAll2(Long categoryId);
 
     /**
      * @ description 根据id查询药物信息
