@@ -5,7 +5,13 @@ const _sfc_main = {
   data() {
     return {
       sorts: [],
-      arr: []
+      // 存储分类
+      arr: [],
+      // 存储养生品信息
+      searchName: "",
+      // 存储搜索框内容
+      nowSelectedSort: -1
+      //开始时展示的是id为-1的分类，表示 “全部”
     };
   },
   onLoad(option) {
@@ -25,6 +31,10 @@ const _sfc_main = {
           if (res.data.code == 1) {
             console.log(res.data);
             this.sorts = res.data.data.categories;
+            this.sorts.unshift({
+              id: -1,
+              name: "全部"
+            });
             this.arr = res.data.data.medicines;
           }
         },
@@ -101,6 +111,46 @@ const _sfc_main = {
           });
         }
       });
+      this.updateSelected(categoryId);
+    },
+    // 搜索框实时更新事件
+    onInput(e) {
+      this.searchName = e.detail.value;
+      console.log(this.searchName);
+    },
+    // 根据搜索内容，筛选养生品
+    onSearch() {
+      console.log(this.searchName);
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: `${common_js_utils.baseUrl}/api/user/medicine/list2`,
+        method: "GET",
+        header: {
+          "authorization": token
+        },
+        data: {
+          name: this.searchName
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            console.log(res.data);
+            this.arr = res.data.data.medicines;
+          }
+        },
+        fail: (err) => {
+          common_vendor.index.showToast({
+            duration: 1e3,
+            title: "数据获取失败",
+            icon: "error"
+          });
+        }
+      });
+    },
+    updateSelected(idx) {
+      this.nowSelectedSort = idx;
+    },
+    isSelected(idx) {
+      return this.nowSelectedSort == idx;
     }
   }
 };
@@ -108,14 +158,18 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.o(($event) => $options.goShoppingCart()),
     b: common_vendor.o(($event) => $options.goShoppingCart()),
-    c: common_vendor.f($data.sorts, (item, index, i0) => {
+    c: common_vendor.o((...args) => $options.onInput && $options.onInput(...args)),
+    d: $data.searchName,
+    e: common_vendor.o((...args) => $options.onSearch && $options.onSearch(...args)),
+    f: common_vendor.f($data.sorts, (item, index, i0) => {
       return {
         a: common_vendor.t(item.name),
         b: item.id,
-        c: common_vendor.o(($event) => $options.onSelect(item.id), item.id)
+        c: common_vendor.o(($event) => $options.onSelect(item.id), item.id),
+        d: $options.isSelected(item.id) ? "#7ca0ec" : "black"
       };
     }),
-    d: common_vendor.f($data.arr, (item, index, i0) => {
+    g: common_vendor.f($data.arr, (item, index, i0) => {
       return common_vendor.e({
         a: item.image,
         b: common_vendor.t(item.name),

@@ -6,7 +6,7 @@ import com.zyp.vo.KeepHeathyAndCategoryVo;
 import java.util.List;
 
 public interface MedicineService {
-    List<Medicine> selectAll1();
+    List<Medicine> selectAll1(String name);
 
-    KeepHeathyAndCategoryVo selectAll2(Long categoryId);
+    KeepHeathyAndCategoryVo selectAll2(Long categoryId,String name);
 }

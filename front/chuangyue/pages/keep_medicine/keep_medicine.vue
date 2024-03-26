@@ -4,11 +4,13 @@
 			<image src="../../static/icons/buy_car.svg" @click="goShoppingCart()" ></image>
 			<view class="buy_car_text" @click="goShoppingCart()">我的购物车</view>
 		</view>
+		
+		<!-- 搜索 -->
 		<view class="">
 			<view class="search">
-				<input class="search_box" type="text" placeholder="输入药品名 疾病或症状"/>
+				<input class="search_box" type="text" placeholder="输入名称"  @input="onInput" :value="searchName"/>
 				<view class="icon">
-					<image src="../../static/icons/search.svg" mode=""></image>
+					<image src="../../static/icons/search.svg" @click="onSearch"></image>
 				</view>
 			</view>
 		</view>
@@ -17,7 +19,7 @@
 		<view class="container">
 			<view class="box">
 				<scroll-view class="my_scroll" scroll-x="true" >
-					<view class="sort" v-for="(item, index) in sorts" :key="item.id" @click="onSelect(item.id)">
+					<view class="sort" v-for="(item, index) in sorts" :key="item.id" @click="onSelect(item.id)" :style="{color : isSelected(item.id) ? '#7ca0ec':'black'}">
 						{{item.name}}
 					</view>
 				</scroll-view>
@@ -55,8 +57,10 @@
 	export default {
 		data() {
 			return {
-				sorts:[],
-				arr:[]
+				sorts:[],			// 存储分类
+				arr:[],				// 存储养生品信息
+				searchName:'',      // 存储搜索框内容
+				nowSelectedSort:-1	//开始时展示的是id为-1的分类，表示 “全部”
 			}
 		},
 		onLoad(option){
@@ -76,6 +80,10 @@
 						if(res.data.code == 1){
 							console.log(res.data);
 							this.sorts = res.data.data.categories;
+							this.sorts.unshift({
+								id: -1,
+								name:"全部"								
+							});
 							this.arr = res.data.data.medicines;
 						}
 					},
@@ -151,7 +159,47 @@
 							icon:"error"
 						})
 					}
+				});
+				this.updateSelected(categoryId);
+			},
+			// 搜索框实时更新事件
+			onInput(e){
+				this.searchName = e.detail.value;
+				console.log(this.searchName);
+			},
+			// 根据搜索内容，筛选养生品
+			onSearch(){
+				console.log(this.searchName);
+				let token = uni.getStorageSync('authorization')
+				uni.request({
+					url: `${baseUrl}/api/user/medicine/list2`,
+					method:"GET",
+					header:{
+						'authorization' : token,
+					},
+					data:{
+						name: this.searchName
+					},
+					success: (res) => {
+						if(res.data.code == 1){
+							console.log(res.data);
+							this.arr = res.data.data.medicines;
+						}
+					},
+					fail: (err) => {
+						uni.showToast({
+							duration:1000,
+							title:"数据获取失败",
+							icon:"error"
+						})
+					}
 				})
+			},
+			updateSelected(idx){
+				this.nowSelectedSort = idx;
+			},
+			isSelected(idx){
+				return this.nowSelectedSort == idx;
 			}
 		}
 	}

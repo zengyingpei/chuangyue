@@ -7,9 +7,9 @@
 		</view>
 		<view class="">
 			<view class="search">
-				<input class="search_box" type="text" placeholder="输入药品名 疾病或症状"/>
+				<input class="search_box" type="text" placeholder="输入药品名" @input="onInput" :value="searchName"/>
 				<view class="icon">
-					<image src="../../static/icons/search.svg" mode=""></image>
+					<image src="../../static/icons/search.svg" @click="onSearch"></image>
 				</view>
 			</view>
 		</view>
@@ -46,7 +46,8 @@
 	export default {
 		data() {
 			return {
-				arr:[]
+				arr:[],			//存储yao
+				searchName:''	//搜索框的内容
 			}
 		},
 		onLoad(option){
@@ -106,6 +107,31 @@
 								title:"不能再多了，库存不足了",
 								icon:"error"
 							})
+						}
+					}
+				})
+			},
+			// 搜索框实时更新
+			onInput(e){
+				this.searchName = e.detail.value;
+				console.log(this.searchName);
+			},
+			// 搜索指定内容
+			onSearch(){
+				let token=uni.getStorageSync('authorization');
+				uni.request({
+					url: `${baseUrl}/api/user/medicine/list1`,
+					method:"GET",
+					header:{
+						'authorization' : token,
+					},
+					data:{
+						name: this.searchName
+					},
+					success: (res) => {
+						if(res.data.code == 1){
+							console.log(res.data);
+							this.arr = res.data.data;
 						}
 					}
 				})

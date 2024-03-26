@@ -19,27 +19,27 @@ public class MedicineController {
     @Autowired
     private MedicineService medicineService;
     /**
-     * @ description 获取所有治疗药物
+     * @ description 获取所有治疗药物(可按名称)
      *
      * @ return com.zyp.pojo.Result<java.util.List<com.zyp.pojo.Medicine>>
      * @ author DELL
      */
     @GetMapping("/list1")
-    public Result<List<Medicine>> selectAll1(){
+    public Result<List<Medicine>> selectAll1(String name){
         log.info("selectAll1");
-        return Result.success(medicineService.selectAll1());
+        return Result.success(medicineService.selectAll1(name));
     }
 
     /**
-     * @ description 获取养生药物
+     * @ description 获取养生药物(可按分类和名称)
      *
      * @ return com.zyp.pojo.Result<java.util.List<com.zyp.pojo.Medicine>>
      * @ author DELL
      */
     @GetMapping("/list2")
-    public Result<KeepHeathyAndCategoryVo> selectAll2(Long categoryId){
+    public Result<KeepHeathyAndCategoryVo> selectAll2(Long categoryId,String name){
         log.info("selectAll2");
-        KeepHeathyAndCategoryVo res = medicineService.selectAll2(categoryId);
+        KeepHeathyAndCategoryVo res = medicineService.selectAll2(categoryId,name);
         return Result.success(res);
     }
 }
