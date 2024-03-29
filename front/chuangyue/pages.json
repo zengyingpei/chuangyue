@@ -125,6 +125,30 @@
 				"navigationBarTitleText" : "购物车",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/address/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/address/update_address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "修改地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/address/add_address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

@@ -42,7 +42,7 @@
 				<text class="title">我的医疗</text>
 			</view>
 			<view class="section_body">
-				<view class="section_body_item" v-for="item in section2" :key="item.id" >
+				<view class="section_body_item" v-for="item in section2" :key="item.id" @click="goToSection2(item.id)">
 					<view class="section_body_item_img"><image class="images" :src="item.img"></image></view>
 					<view class="section_body_item_title">{{item.title}}</view>
 				</view>
@@ -129,6 +129,13 @@
 				uni.navigateTo({
 					url:'/pages/my/update_user_message'
 				})
+			},
+			goToSection2(item_id){
+				if(item_id == 1){
+					uni.navigateTo({
+						url: '/pages/address/address'
+					})
+				}
 			}
 		}
 	}

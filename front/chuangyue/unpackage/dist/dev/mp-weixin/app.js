@@ -19,6 +19,9 @@ if (!Math) {
   "./pages/doctor_detail/doctor_detail.js";
   "./pages/registration/registration.js";
   "./pages/shopping_cart/shopping_cart.js";
+  "./pages/address/address.js";
+  "./pages/address/update_address.js";
+  "./pages/address/add_address.js";
 }
 const _sfc_main = {
   onLaunch: function() {

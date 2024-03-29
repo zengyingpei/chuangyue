@@ -15,7 +15,10 @@
     "pages/doctor_list/doctor_list",
     "pages/doctor_detail/doctor_detail",
     "pages/registration/registration",
-    "pages/shopping_cart/shopping_cart"
+    "pages/shopping_cart/shopping_cart",
+    "pages/address/address",
+    "pages/address/update_address",
+    "pages/address/add_address"
   ],
   "window": {
     "navigationBarTextStyle": "black",
