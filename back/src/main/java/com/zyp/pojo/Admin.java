@@ -18,9 +18,7 @@ public class Admin implements Serializable {
     private String password;
     private String name;
     private String phone;
-    private Integer age;
-    private String sex;
-    private String idNumber;
+    private String address;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

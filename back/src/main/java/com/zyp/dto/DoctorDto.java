@@ -17,5 +17,6 @@ public class DoctorDto implements Serializable {
     private String level;
     private String desc;
     private Long deptId;
+    private String password;
     private List<Long> sicknessId;
 }

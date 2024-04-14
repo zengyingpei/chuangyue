@@ -14,6 +14,7 @@ import com.zyp.pojo.Doctor;
 import com.zyp.pojo.DoctorDetail;
 import com.zyp.pojo.PageBean;
 import com.zyp.service.DoctorService;
+import com.zyp.utils.Md5Util;
 import com.zyp.vo.DoctorDeatilVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -97,6 +98,12 @@ public class DoctorServiceImpl implements DoctorService {
         // 1、doctor表中插入数据，主键要回传
         Doctor doctor= new Doctor();
         BeanUtils.copyProperties(doctorDto, doctor);
+        // 获取手机号码
+        String phone = doctor.getPhone();
+        // 将新增的医生的登陆密码设置成默认是 手机号
+        String password = Md5Util.getMD5String(phone);
+        doctor.setPassword(password);
+
         log.info("doctor={}",doctor);
         doctorMapper.insert(doctor);
 

@@ -1,11 +1,9 @@
 <template>
 	<view>
-		<!-- <view class="">{{doctorId}}</view>
-		<view class="">{{doctorDetail}}</view> -->
-		
+		<!-- 医生信息展示 -->
 		<view class="doc_card">
 			<view class="doc_left_img">
-				<image class="doc_images" src="/static/logo.png" mode=""></image>
+				<image class="doc_images" :src="doctorDetail.avatar" mode=""></image>
 				<view class="attention">
 					关注
 				</view>

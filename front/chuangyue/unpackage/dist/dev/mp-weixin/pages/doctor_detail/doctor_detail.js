@@ -57,25 +57,26 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.t($data.doctorDetail.name),
-    b: common_vendor.t($data.doctorDetail.level),
-    c: common_vendor.f($data.doctorDetail.department, (item, index, i0) => {
+    a: $data.doctorDetail.avatar,
+    b: common_vendor.t($data.doctorDetail.name),
+    c: common_vendor.t($data.doctorDetail.level),
+    d: common_vendor.f($data.doctorDetail.department, (item, index, i0) => {
       return {
         a: common_vendor.t(item),
         b: index
       };
     }),
-    d: common_vendor.t($data.doctorDetail.workplace),
-    e: common_vendor.t($data.doctorDetail.score),
-    f: common_vendor.p({
+    e: common_vendor.t($data.doctorDetail.workplace),
+    f: common_vendor.t($data.doctorDetail.score),
+    g: common_vendor.p({
       type: "hand-up-filled",
       color: "#7ca0ec"
     }),
-    g: common_vendor.t($data.doctorDetail.specialization),
-    h: common_vendor.t($data.doctorDetail.desc),
-    i: common_vendor.t($data.doctorDetail.consultCost),
+    h: common_vendor.t($data.doctorDetail.specialization),
+    i: common_vendor.t($data.doctorDetail.desc),
     j: common_vendor.t($data.doctorDetail.consultCost),
-    k: common_vendor.o(($event) => $options.goToRegistration())
+    k: common_vendor.t($data.doctorDetail.consultCost),
+    l: common_vendor.o(($event) => $options.goToRegistration())
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/chuangyue/front/chuangyue/pages/doctor_detail/doctor_detail.vue"]]);

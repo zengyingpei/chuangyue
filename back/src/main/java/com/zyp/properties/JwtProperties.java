@@ -23,4 +23,10 @@ public class JwtProperties {
     private long userTtl;
     private String userTokenName;
 
+    /**
+     * 医生端的jwt令牌相关配置
+     */
+    private String doctorSecretKey;
+    private long doctorTtl;
+    private String doctorTokenName;
 }

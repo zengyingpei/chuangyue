@@ -92,7 +92,7 @@ public interface DoctorMapper {
      * @ return void
      * @ author DELL
      */
-    @Insert("insert into doctor (name, age, phone, avatar, workplace, level, `desc`) values(#{name}, #{age},#{phone},#{avatar},#{workplace},#{level},#{desc})")
+    @Insert("insert into doctor (name, age, phone, avatar, workplace, level, `desc`,`password`) values(#{name}, #{age},#{phone},#{avatar},#{workplace},#{level},#{desc},#{password})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Doctor doctor);
 
@@ -112,4 +112,13 @@ public interface DoctorMapper {
      * @ author DELL
      */
     void update(Doctor doctor);
+
+    /**
+     * @ description 根据医生的姓名来查询信息
+     *
+     * @ return com.zyp.pojo.Doctor
+     * @ author DELL
+     */
+    @Select("select * from doctor where name = #{name}")
+    Doctor selectByName(String name);
 }

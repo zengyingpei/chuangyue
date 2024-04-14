@@ -1,4 +1,4 @@
-package com.zyp.pojo;
+package com.zyp.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +8,13 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Doctor implements Serializable {
+public class DoctorLoginVo implements Serializable {
     private Long id;
     private String name;
-    private Integer age;
     private String phone;
     private String avatar;
-    private String workplace;
-    private String level;
-    private String desc;
-    private String card;
-    private String password;
+    private String token;
 }

@@ -39,6 +39,9 @@ chuangyue:
     admin-secret-key: chuangyue
     admin-token-name: authorization
     admin-ttl: 86400000
+    doctor-secret-key: chuangyue
+    doctor-token-name: authorization
+    doctor-ttl: 86400000
   wechat:
     appid: ${chuangyue.wechat.appid}
     secret: ${chuangyue.wechat.secret}

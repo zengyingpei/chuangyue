@@ -199,6 +199,9 @@
 		onLoad (option){
 			this.getDatas();	//首页动态资源加载
 		},
+		onShow(){
+			this.getDatas();	// 重新打开页面的时候，也加载数据
+		},
 		methods: {
 			goToFind(){
 				uni.navigateTo({

@@ -38,6 +38,9 @@ const _sfc_main = {
   onLoad(option) {
     this.getDatas();
   },
+  onShow() {
+    this.getDatas();
+  },
   methods: {
     goToFind() {
       common_vendor.index.navigateTo({
