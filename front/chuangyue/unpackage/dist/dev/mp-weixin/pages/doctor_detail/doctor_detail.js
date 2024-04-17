@@ -44,6 +44,35 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: `../registration/registration?docId=${this.doctorId}`
       });
+    },
+    goToQuery() {
+      console.log("问诊");
+      let token = common_vendor.index.getStorageSync("authorization");
+      common_vendor.index.request({
+        url: `${common_js_utils.baseUrl}/api/user/chat/new`,
+        method: "POST",
+        data: {
+          doctorId: this.doctorId
+        },
+        header: {
+          "authorization": token
+        },
+        success: (res) => {
+          if (res.data.code == 1) {
+            let chatLinkId = res.data.data;
+            console.log(chatLinkId);
+            common_vendor.index.navigateTo({
+              url: `/pages/message/chat?linkId=${chatLinkId}&doctorId=${this.doctorId}`
+            });
+          } else {
+            common_vendor.index.showToast({
+              duration: 1e3,
+              title: "数据加载失败",
+              icon: "error"
+            });
+          }
+        }
+      });
     }
   }
 };
@@ -75,8 +104,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     h: common_vendor.t($data.doctorDetail.specialization),
     i: common_vendor.t($data.doctorDetail.desc),
     j: common_vendor.t($data.doctorDetail.consultCost),
-    k: common_vendor.t($data.doctorDetail.consultCost),
-    l: common_vendor.o(($event) => $options.goToRegistration())
+    k: common_vendor.o(($event) => $options.goToQuery()),
+    l: common_vendor.t($data.doctorDetail.consultCost),
+    m: common_vendor.o(($event) => $options.goToRegistration())
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/chuangyue/front/chuangyue/pages/doctor_detail/doctor_detail.vue"]]);

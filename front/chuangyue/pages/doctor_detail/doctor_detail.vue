@@ -57,7 +57,7 @@
 					</view>
 				</view>
 				<view class="item_right">
-					<view class="right_button">
+					<view class="right_button" @click="goToQuery()">
 						去问诊
 					</view>
 				</view>
@@ -215,6 +215,39 @@
 				uni.navigateTo({
 					url:`../registration/registration?docId=${this.doctorId}`
 				})
+			},
+			goToQuery(){
+				console.log("问诊");
+				let token=uni.getStorageSync('authorization');
+				// 跳转之前创建一个新的聊天关系
+				uni.request({
+					url: `${baseUrl}/api/user/chat/new`,
+					method:"POST",
+					data:{
+						doctorId : this.doctorId
+					},
+					header:{
+						'authorization' : token,
+					},
+					success: (res) => {
+						if(res.data.code == 1){
+							let chatLinkId = res.data.data;
+							console.log(chatLinkId);
+							uni.navigateTo({
+								url: `/pages/message/chat?linkId=${chatLinkId}&doctorId=${this.doctorId}`
+							})
+						}else{
+							uni.showToast({
+								duration:1000,
+								title:"数据加载失败",
+								icon:'error'
+							})
+						}
+					}
+				})
+				
+				
+				
 			}
 		}
 	}

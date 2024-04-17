@@ -41,6 +41,7 @@ const _sfc_main = {
               if (res2.data.code == 1) {
                 console.log("成功 ", res2.data);
                 store_index.store.commit("updateToken", res2.data.data.token);
+                store_index.store.commit("updateId", res2.data.data.id);
                 store_index.store.commit("updateAvatar", this.avatarUrl);
                 store_index.store.commit("updateUsername", this.userName);
                 store_index.store.commit("updateIsLogin", 1);

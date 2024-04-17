@@ -18,7 +18,8 @@
     "pages/shopping_cart/shopping_cart",
     "pages/address/address",
     "pages/address/update_address",
-    "pages/address/add_address"
+    "pages/address/add_address",
+    "pages/message/chat"
   ],
   "window": {
     "navigationBarTextStyle": "black",

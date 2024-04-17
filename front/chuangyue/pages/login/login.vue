@@ -65,6 +65,7 @@
 									console.log("成功 ",res.data)
 									// vuex状态管理
 									store.commit('updateToken',res.data.data.token);
+									store.commit('updateId', res.data.data.id);
 									store.commit('updateAvatar',this.avatarUrl);
 									store.commit('updateUsername',this.userName);
 									store.commit('updateIsLogin',1)

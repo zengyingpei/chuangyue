@@ -22,6 +22,7 @@ if (!Math) {
   "./pages/address/address.js";
   "./pages/address/update_address.js";
   "./pages/address/add_address.js";
+  "./pages/message/chat.js";
 }
 const _sfc_main = {
   onLaunch: function() {

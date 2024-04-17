@@ -48,3 +48,35 @@
   width: 100rpx;
   height: 100rpx;
 }
+.box {
+  width: 690rpx;
+  height: 120rpx;
+  margin: 20rpx auto;
+  border: 1px solid #eee;
+  border-radius: 20rpx;
+  box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+}
+.box .photo {
+  width: 130rpx;
+  padding-left: 20rpx;
+  padding-top: 10rpx;
+}
+.box .photo .img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+.box .name {
+  font-size: 40rpx;
+  width: -webkit-max-content;
+  width: max-content;
+  line-height: 110rpx;
+  box-sizing: border-box;
+}
+.box .time {
+  font-size: 25rpx;
+  margin-left: 170rpx;
+  line-height: 110rpx;
+  box-sizing: border-box;
+}

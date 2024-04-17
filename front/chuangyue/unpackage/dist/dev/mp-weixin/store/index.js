@@ -3,12 +3,16 @@ const common_vendor = require("../common/vendor.js");
 const store = common_vendor.createStore({
   state: {
     //存放状态
+    id: "",
     username: "",
     avatar: "",
     token: "",
     is_login: 0
   },
   mutations: {
+    updateId(state, id) {
+      state.id = id;
+    },
     updateUsername(state, username) {
       state.username = username;
     },

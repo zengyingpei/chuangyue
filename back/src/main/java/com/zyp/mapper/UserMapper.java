@@ -18,4 +18,8 @@ public interface UserMapper {
 
     @Update("update user set name=#{name}, phone=#{phone}, sex=#{sex}, id_number=#{idNumber} where id=#{id}")
     void update(User user);
+
+    @Select("select name from user where id = #{id}")
+    String selectNameById(Long id);
+
 }
