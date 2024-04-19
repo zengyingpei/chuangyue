@@ -19,6 +19,19 @@ const routes = [
         path:'/appointment',
         name:'appointment',
         component: ()=> import ('../views/doctor/AppointmentView.vue'),
+      },
+      {
+        path:'/my',
+        name:'my',
+        component: ()=> import ('../views/my/MyView.vue'),
+
+        children:[
+          {
+            path:'/my/info',
+            name:'myInfo',
+            component: ()=> import ('../views/my/AccountManageView.vue'),
+          }
+        ]
       }
     ],
 

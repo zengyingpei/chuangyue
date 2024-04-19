@@ -121,4 +121,25 @@ public interface DoctorMapper {
      */
     @Select("select * from doctor where name = #{name}")
     Doctor selectByName(String name);
+
+    /**
+     * @ description 修改密码
+     * @param id
+     * @param password
+     * @param confirmPassword
+     * @ return void
+     * @ author DELL
+     */
+    @Update("update doctor set password = #{password} where id = #{id}")
+    void updatePassword(Long id, String password, String confirmPassword);
+
+    /**
+     * @ description 上传头像
+     * @param id
+     * @param url
+     * @ return void
+     * @ author DELL
+     */
+    @Update("update doctor set avatar = #{url} where id = #{id}")
+    void updateAvatar(Long id, String url);
 }

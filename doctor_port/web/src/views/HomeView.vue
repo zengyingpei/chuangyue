@@ -12,6 +12,12 @@
           设置预约时间
         </router-link>
       </div>
+
+      <div class="avatar" @click="goToMy()">
+          <div class="photo">
+            <img src="http://photo.chaoxing.com/photo_80.jpg" alt="" class="my_avatar">
+          </div>
+      </div>
     </div>
     <div class="body">
       <!-- 首页主题内容 -->
@@ -23,16 +29,23 @@
 </template>
 
 <script>
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 import { computed } from "vue";
 
 export default {
   setup: () => {
-    const route = useRoute(); //获取当前路由对象
-
+    const route = useRoute(); //获取当前路由只读对象
+    const router = useRouter(); //获取路由只写对象
     let route_name = computed(() => route.name); //通过computed实时计算当前页面路由的字符串
+
+    // 点击头像之后，路由跳转
+    const goToMy=()=>{
+      router.push({name:'my'})
+    }
+    
     return {
       route_name,
+      goToMy
     };
   },
 };
@@ -62,6 +75,22 @@ export default {
   width: 20vw;
   height: 8vh;
   line-height: 8vh;
+}
+
+.avatar{
+  /* background-color: black; */
+  margin-left: 60vw;
+}
+
+.photo{
+
+}
+
+.my_avatar{
+  margin-top: 1vw;
+  width:  5vh;
+  height: 5vh;
+  border-radius: 50%;
 }
 
 .select {
