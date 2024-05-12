@@ -21,6 +21,7 @@ export default createStore({
       state.token = token;
     },
     logout(state){
+      localStorage.removeItem("token");
       state.id = "";
       state.name = "";
       state.photo = "";

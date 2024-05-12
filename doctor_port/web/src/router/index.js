@@ -8,28 +8,40 @@ const routes = [
     path: '/',
     name: 'home',
     component: ()=> import ('../views/HomeView.vue'),
-
+    
     children:[
       {
         path:'/chat',
         name:'chat',
         component: ()=> import ('../views/doctor/ChatView.vue'),
+        meta:{
+          requestAuth: true
+        }
       },
       {
         path:'/appointment',
         name:'appointment',
         component: ()=> import ('../views/doctor/AppointmentView.vue'),
+        meta:{
+          requestAuth: true
+        }
       },
       {
         path:'/my',
         name:'my',
         component: ()=> import ('../views/my/MyView.vue'),
+        meta:{
+          requestAuth: true
+        },
 
         children:[
           {
             path:'/my/info',
             name:'myInfo',
             component: ()=> import ('../views/my/AccountManageView.vue'),
+            meta:{
+              requestAuth: true
+            }
           }
         ]
       }

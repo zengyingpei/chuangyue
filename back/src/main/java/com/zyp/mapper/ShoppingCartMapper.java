@@ -1,5 +1,7 @@
 package com.zyp.mapper;
 
+import com.zyp.anno.AutoFill;
+import com.zyp.enumeration.OperationType;
 import com.zyp.pojo.Result;
 import com.zyp.pojo.ShoppingCart;
 import org.apache.ibatis.annotations.Delete;
@@ -27,7 +29,6 @@ public interface ShoppingCartMapper {
      * @ return void
      * @ author DELL
      */
-    //TODO AOP公共字段填充
     @Update("update shopping_cart set number = number + #{num},price =#{num} * #{unit} + price where id = #{shoppingcartId}")
     void addOne(Long shoppingcartId, BigDecimal unit, Integer num);
 
@@ -64,7 +65,7 @@ public interface ShoppingCartMapper {
      * @ return void
      * @ author DELL
      */
-    //TODO 公共字段填充
+    @AutoFill(OperationType.INSERT)
     void addNew(ShoppingCart shoppingCart);
 
     /**

@@ -110,8 +110,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                         .name(medicine.getName())
                         .image(medicine.getImage())
                         .price(medicine.getPrice())
-                        .createTime(LocalDateTime.now())
-                        .updateTime(LocalDateTime.now())
+//                        .createTime(LocalDateTime.now())
+//                        .updateTime(LocalDateTime.now())
                         .build();
 
                 shoppingCartMapper.addNew(shoppingCart);

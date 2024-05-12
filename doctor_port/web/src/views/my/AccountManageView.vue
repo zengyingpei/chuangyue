@@ -50,7 +50,7 @@ import {baseUrl} from '../../common/util.js'
         let password = ref('');
         let confirm_password = ref('');
       
-        // 修改密码
+        // update pwd
         const update_password=()=>{
             $.ajax({
                 url: `${baseUrl}/api/doctor/doctor/updatepassword`,
@@ -75,7 +75,7 @@ import {baseUrl} from '../../common/util.js'
             })
         }
 
-        // 上传头像
+        // upload avatar
         const onFileChange=(e)=>{
             const file = e.target.files[0];
             if(!file){
