@@ -24,7 +24,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
 
@@ -55,10 +55,11 @@
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
     <!--测试-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+          <scope>test</scope>
+      </dependency>
     <!--jwt-->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
@@ -98,6 +99,14 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
+
+<!--     连接池依赖 -->
+<!--     https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+    </dependency>
+
     <!--  knife4j集成swagger生成的api文档增强解决方案  -->
     <dependency>
       <groupId>com.github.xiaoymin</groupId>
@@ -125,10 +134,11 @@
       <version>8.2.1</version>
     </dependency>
 
-    <!--  websocket  -->
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-websocket</artifactId>
+      <version>3.2.1</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
@@ -142,6 +152,11 @@
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>1.9.22</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-cache</artifactId>
     </dependency>
 
   </dependencies>

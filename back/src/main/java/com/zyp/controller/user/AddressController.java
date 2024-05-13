@@ -6,6 +6,8 @@ import com.zyp.service.AddressService;
 import com.zyp.vo.AddressVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +38,7 @@ public class AddressController {
      * @ author DELL
      */
     @GetMapping("/one")
+    @Cacheable(cacheNames = "useraddress", key = "#id")
     public Result<AddressVo> selectById(Long id){
         AddressVo res = addressService.selectById(id);
         return Result.success(res);
@@ -48,6 +51,7 @@ public class AddressController {
      * @ author DELL
      */
     @PostMapping("update")
+    @CacheEvict(cacheNames = "useraddress", allEntries = true)
     public Result update(@RequestBody Address address){
         log.info("{}",address);
         addressService.update(address);
@@ -61,6 +65,7 @@ public class AddressController {
      * @ author DELL
      */
     @PostMapping("/add")
+    @CacheEvict(cacheNames = "useraddress", allEntries = true)
     public Result add(@RequestBody Address address){
         addressService.add(address);
         return Result.success();
@@ -73,6 +78,7 @@ public class AddressController {
      * @ author DELL
      */
     @PostMapping("/del")
+    @CacheEvict(cacheNames = "useraddress", allEntries = true)
     public Result delete(@RequestBody Address address){
         Long id = address.getId();
         addressService.delete(id);
